@@ -43,7 +43,7 @@ def test():
 def process():
   if request.method == 'POST':
     file = request.files['file']
-    hocr = request.form.get('hocr') or ''
+    hocr =  ''#request.form.get('hocr') or
     ext = '.hocr' if hocr else '.txt'
     if file and allowed_file(file.filename):
       folder = os.path.join(app.config['TEMP_FOLDER'], str(os.getpid()))
