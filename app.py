@@ -47,7 +47,8 @@ def process():
     ext = '.hocr' if hocr else '.txt'
     if file and allowed_file(file.filename):
       folder = os.path.join(app.config['TEMP_FOLDER'], str(os.getpid()))
-      os.mkdir(folder)
+      if not os.path.exists(folder):
+          os.mkdir(folder)
       input_file = os.path.join(folder, secure_filename(file.filename))
       output_file = os.path.join(folder, app.config['OCR_OUTPUT_FILE'])
       file.save(input_file)
